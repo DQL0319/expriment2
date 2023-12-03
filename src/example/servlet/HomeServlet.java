@@ -40,7 +40,7 @@ public class HomeServlet extends HttpServlet {
             } else {
                 List<User> users = runner.query(sql, new BeanListHandler<>(User.class));
                 // 打印查询出的数据
-                System.out.println(users);
+//                System.out.println(users);
                 for (User user : users) {
                     System.out.println(user);
                 }

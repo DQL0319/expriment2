@@ -25,12 +25,13 @@
             </div>
         </form>
 
-        <%
-            if (request.getSession().getAttribute("user") != null && request.getSession().getAttribute("role").equals("1")) {
-        %>
         <div class="col-auto">
             <a href="update.jsp" class="btn btn-primary mb-3" style="float: left; margin-left: 100px">Update</a>
         </div>
+
+        <%
+            if (request.getSession().getAttribute("user") != null && request.getSession().getAttribute("role").equals("1")) {
+        %>
 
         <div class="col-auto">
             <a href="delete.jsp" class="btn btn-primary mb-3 btn-danger" style="float: left; margin-left: 20px">Delete</a>

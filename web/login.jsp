@@ -19,7 +19,7 @@
         <div class="card-body">
             <h1 class="card-title">Login</h1>
             <h5 class="alert alert-danger" role="alert">
-                <%=(session.getAttribute("Error") == null ? "Please First Login" : session.getAttribute("Error"))%>
+                <%=(session.getAttribute("Error") == null ? "❗Please First Login" : session.getAttribute("Error"))%>
             </h5>
             <form action="login" method="get" class="mb-3">
                 <div class="mb-3">

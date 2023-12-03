@@ -26,6 +26,8 @@ public class LoginServlet extends HttpServlet {
         String name = req.getParameter("username");
         String password = req.getParameter("password");
         String role = req.getParameter("role");
+        String id = null;
+        String gender = null;
         System.out.println("请求参数name:" + name + "------password:" + password);
 
         // 根据用户名查询用户
@@ -44,6 +46,9 @@ public class LoginServlet extends HttpServlet {
         boolean isSuccess = false;
         if (users != null && users.size() > 0) {
             User user = users.get(0);
+            id = user.getId();
+            gender = user.getGender();
+            System.out.println(user);
             if (user.getPassword().equals(password) && user.getRole().equals(role)) {
                 isSuccess = true;
             }
@@ -53,6 +58,8 @@ public class LoginServlet extends HttpServlet {
         if (isSuccess) {
             req.getSession().setAttribute("user", name);
             req.getSession().setAttribute("role", role);
+            req.getSession().setAttribute("id", id);
+            req.getSession().setAttribute("gender", gender);
             req.getRequestDispatcher("home").forward(req, resp);
         } else {
             req.getSession().setAttribute("Error", "❗ Please select the correct role!");

@@ -13,6 +13,42 @@
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
+    <script>
+        const role = <%=request.getSession().getAttribute("role")%>;
+        const gender = "<%=request.getSession().getAttribute("gender")%>";
+
+        function setRadioButtons() {
+            console.log(role);
+            console.log(Number(role) === 1);
+            console.log(Number(role) === 0);
+            console.log(gender === "男");
+            console.log(gender === "女");
+            console.log("<%=request.getSession().getAttribute("gender")%>");
+            if(gender === "男") {
+                document.getElementById('flexRadioDefault1').checked = true;
+            } else if (gender === "女") {
+                document.getElementById('flexRadioDefault2').checked = true;
+            }
+            if (Number(role) === 1) {
+                document.getElementById('flexRadioDefault1').checked = false;
+                document.getElementById('flexRadioDefault2').checked = false;
+                document.getElementById('flexRadioDefault3').checked = false;
+                document.getElementById('flexRadioDefault4').checked = false;
+                document.getElementById('exampleInputId').disabled = false;
+                document.getElementById('exampleInputId').value = null;
+            } else if (Number(role) === 0) {
+                document.getElementById('flexRadioDefault4').checked = true;
+                document.getElementById('flexRadioDefault3').disabled = true;
+                document.getElementById('exampleInputId').disabled = true;
+                document.getElementById('exampleInputId').value = "<%=request.getSession().getAttribute("id")%>";
+            }
+
+        }
+
+        window.onload = function () {
+            setRadioButtons();
+        };
+    </script>
     <div class="card container my-5" style="width: 50rem;">
         <div class="card-body">
             <h1 class="card-title">Update</h1>
@@ -80,7 +116,6 @@
                             type="radio"
                             name="gender"
                             id="flexRadioDefault1"
-                            checked
                             value="男"
                     >
                     <label class="form-check-label" for="flexRadioDefault1">
@@ -108,7 +143,6 @@
                             type="radio"
                             name="role"
                             id="flexRadioDefault3"
-                            checked
                             value="1"
                     >
                     <label class="form-check-label" for="flexRadioDefault3">
