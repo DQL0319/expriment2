@@ -11,38 +11,59 @@
     <title>Update</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="icon" href="./images/Apple.png">
 </head>
 <body>
     <script>
-        const role = <%=request.getSession().getAttribute("role")%>;
-        const gender = "<%=request.getSession().getAttribute("gender")%>";
+        const loginRole = <%=request.getSession().getAttribute("role")%>;
+        const role = <%=request.getParameter("role")%>;
+
+        const loginGender = "<%=request.getSession().getAttribute("gender")%>";
+        const gender = "<%=request.getParameter("gender")%>";
+
+        const name = "<%=request.getSession().getAttribute("user")%>";
+
+        const loginId = <%=request.getSession().getAttribute("id")%>;
+        const id = <%=request.getParameter("id")%>;
 
         function setRadioButtons() {
-            console.log(role);
-            console.log(Number(role) === 1);
-            console.log(Number(role) === 0);
-            console.log(gender === "男");
-            console.log(gender === "女");
-            console.log("<%=request.getSession().getAttribute("gender")%>");
-            if(gender === "男") {
+            if (gender === "男") {
                 document.getElementById('flexRadioDefault1').checked = true;
             } else if (gender === "女") {
                 document.getElementById('flexRadioDefault2').checked = true;
             }
-            if (Number(role) === 1) {
-                document.getElementById('flexRadioDefault1').checked = false;
-                document.getElementById('flexRadioDefault2').checked = false;
-                document.getElementById('flexRadioDefault3').checked = false;
-                document.getElementById('flexRadioDefault4').checked = false;
-                document.getElementById('exampleInputId').disabled = false;
-                document.getElementById('exampleInputId').value = null;
-            } else if (Number(role) === 0) {
+            if (role === 1) {
+                document.getElementById('flexRadioDefault3').checked = true;
+                document.getElementById('exampleInputId').value = "<%=request.getParameter("id")%>";
+                document.getElementById('exampleInputUserName').value = "<%=request.getParameter("username")%>";
+                console.log(<%=request.getParameter("username")%>)
+            } else if (role === 0) {
                 document.getElementById('flexRadioDefault4').checked = true;
-                document.getElementById('flexRadioDefault3').disabled = true;
                 document.getElementById('exampleInputId').disabled = true;
-                document.getElementById('exampleInputId').value = "<%=request.getSession().getAttribute("id")%>";
+                document.getElementById('exampleInputId').value = "<%=request.getParameter("id")%>";
+                document.getElementById('exampleInputUserName').disabled = true;
+                document.getElementById('exampleInputUserName').value = "<%=request.getParameter("username")%>";
+                if (loginRole === 0) {
+                    document.getElementById('flexRadioDefault3').disabled = true;
+                } else if (loginRole === 1) {
+                    document.getElementById('exampleInputId').disabled = false;
+                    document.getElementById('exampleInputUserName').disabled = false;
+                }
             }
 
+            if (loginGender === "男") {
+                document.getElementById('flexRadioDefault1').checked = true;
+            } else if (loginGender === "女") {
+                document.getElementById('flexRadioDefault2').checked = true;
+            }
+            if (loginRole === 0) {
+                document.getElementById('flexRadioDefault3').disabled = true;
+                document.getElementById('flexRadioDefault4').checked = true;
+                document.getElementById('exampleInputId').disabled = true;
+                document.getElementById('exampleInputId').value = "<%=request.getSession().getAttribute("id")%>";
+                document.getElementById('exampleInputUserName').disabled = true;
+                document.getElementById('exampleInputUserName').value = "<%=request.getSession().getAttribute("user")%>";
+            }
         }
 
         window.onload = function () {
