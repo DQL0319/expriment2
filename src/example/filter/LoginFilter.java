@@ -30,6 +30,7 @@ public class LoginFilter implements Filter {
                 || url.contains("register.jsp") || url.contains("register")
                 || url.contains("update.jsp") || url.contains("update")
                 || url.contains("delete.jsp") || url.contains("delete")
+                || url.contains("add.jsp") || url.contains("add")
                 || url.contains("home.jsp") || url.contains("home")) {
             filterChain.doFilter(request, response);
             return;

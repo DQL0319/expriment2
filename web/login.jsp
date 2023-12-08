@@ -70,7 +70,7 @@
                     </label>
                 </div>
                 <div class="d-grid gap-2 d-flex justify-content-evenly">
-                    <button type="submit" class="btn btn-dark" style="width: 6rem;">Submit</button>
+                    <button type="submit" class="btn btn-dark" style="width: 6rem;">Login</button>
                     <a href="register.jsp" class="btn btn-dark" style="width: 6rem;">Register</a>
                     <button type="reset" class="btn btn-dark" style="width: 6rem;">Reset</button>
                 </div>

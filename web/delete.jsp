@@ -19,7 +19,7 @@
 
         function deleteId() {
             document.getElementById('exampleInputDelete').value = id;
-            document.getElementById('exampleInputDelete').disabled = true;
+            document.getElementById('exampleInputDelete').readOnly = true;
         }
 
         window.onload = function () {
@@ -29,7 +29,6 @@
     <div class="card container my-5" style="width: 50rem;">
         <div class="card-body">
             <h1 class="card-title">Delete</h1>
-            </h5>
             <form action="delete" method="get" class="mb-3">
                 <div class="mb-3">
                     <label for="exampleInputDelete" class="form-label">Id</label>

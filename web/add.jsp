@@ -1,82 +1,23 @@
 <%--
   Created by IntelliJ IDEA.
   User: acer
-  Date: 2023/12/1
-  Time: 20:46
+  Date: 2023/12/8
+  Time: 11:31
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Update</title>
+    <title>Add</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="icon" href="./images/Apple.png">
 </head>
 <body>
-    <script>
-        const loginRole = <%=request.getSession().getAttribute("role")%>;
-        const role = <%=request.getParameter("role")%>;
-
-        const loginGender = "<%=request.getSession().getAttribute("gender")%>";
-        const gender = "<%=request.getParameter("gender")%>";
-
-        const name = "<%=request.getSession().getAttribute("user")%>";
-
-        const loginId = <%=request.getSession().getAttribute("id")%>;
-        const id = <%=request.getParameter("id")%>;
-
-        function setRadioButtons() {
-            if (gender === "男") {
-                document.getElementById('flexRadioDefault1').checked = true;
-            } else if (gender === "女") {
-                document.getElementById('flexRadioDefault2').checked = true;
-            }
-            if (role === 1) {
-                document.getElementById('flexRadioDefault3').checked = true;
-                document.getElementById('exampleInputId').value = "<%=request.getParameter("id")%>";
-                document.getElementById('exampleInputUserName').value = "<%=request.getParameter("username")%>";
-                document.getElementById('exampleInputPassword').value = "<%=request.getParameter("password")%>";
-                document.getElementById('exampleInputAge').value = "<%=request.getParameter("age")%>";
-                document.getElementById('exampleInputFavorites').value = "<%=request.getParameter("favorite")%>";
-                document.getElementById('exampleInputPhone').value = "<%=request.getParameter("phone")%>";
-                console.log(<%=request.getParameter("username")%>);
-            } else if (role === 0) {
-                document.getElementById('flexRadioDefault4').checked = true;
-                document.getElementById('exampleInputId').value = "<%=request.getParameter("id")%>";
-                document.getElementById('exampleInputUserName').value = "<%=request.getParameter("username")%>";
-                document.getElementById('exampleInputPassword').value = "<%=request.getParameter("password")%>";
-                document.getElementById('exampleInputAge').value = "<%=request.getParameter("age")%>";
-                document.getElementById('exampleInputFavorites').value = "<%=request.getParameter("favorite")%>";
-                document.getElementById('exampleInputPhone').value = "<%=request.getParameter("phone")%>";
-                if (loginRole === 0) {
-                    document.getElementById('flexRadioDefault3').disabled = true;
-                    document.getElementById('exampleInputId').readOnly = true;
-                    document.getElementById('exampleInputUserName').readOnly = true;
-                } else if (loginRole === 1) {
-                    document.getElementById('exampleInputId').disabled = false;
-                    document.getElementById('exampleInputUserName').disabled = false;
-                }
-            }
-        }
-
-        window.onload = function () {
-            setRadioButtons();
-        };
-    </script>
     <div class="card container my-5" style="width: 50rem;">
         <div class="card-body">
-            <h1 class="card-title">Update</h1>
-            <form action="update" method="get" class="mb-3">
-                <div class="mb-3">
-                    <label for="exampleInputId" class="form-label">Id</label>
-                    <input
-                            type="text"
-                            class="form-control"
-                            id="exampleInputId"
-                            name="id"
-                    >
-                </div>
+            <h1 class="card-title">Add</h1>
+            <form action="add" method="post" class="mb-3">
                 <div class="mb-3">
                     <label for="exampleInputUserName" class="form-label">UserName</label>
                     <input
@@ -85,6 +26,7 @@
                             id="exampleInputUserName"
                             name="username"
                     >
+                    <div id="nameHelp" class="form-text">We'll never share your username with anyone else.</div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword" class="form-label">Password</label>
@@ -131,6 +73,7 @@
                             type="radio"
                             name="gender"
                             id="flexRadioDefault1"
+                            checked
                             value="男"
                     >
                     <label class="form-check-label" for="flexRadioDefault1">
@@ -158,6 +101,7 @@
                             type="radio"
                             name="role"
                             id="flexRadioDefault3"
+                            checked
                             value="1"
                     >
                     <label class="form-check-label" for="flexRadioDefault3">

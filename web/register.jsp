@@ -24,7 +24,6 @@
                             type="text"
                             class="form-control"
                             id="exampleInputUserName"
-                            placeholder="admin or user"
                             name="username"
                     >
                     <div id="nameHelp" class="form-text">We'll never share your username with anyone else.</div>

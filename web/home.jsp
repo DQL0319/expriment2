@@ -15,6 +15,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="icon" href="./images/Apple.png">
+    <style>
+        .mybtn {
+            line-height: 20px;
+        }
+
+        .table tbody tr td {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
     <div class="my-3 container">
@@ -26,10 +35,10 @@
                 <button type="submit" class="btn btn-primary mb-3">Search</button>
             </div>
             <%
-                if (request.getSession().getAttribute("role").equals("0")) {
+                if (request.getSession().getAttribute("role").equals("1")) {
             %>
             <div class="col-auto">
-                <a href="update.jsp" class="btn btn-primary mb-3" style="float: left; margin-left: 100px">Update</a>
+                <a href="add.jsp" class="btn btn-primary mb-3" style="float: left;">Add</a>
             </div>
             <%
                 }
@@ -85,13 +94,14 @@
                     <%= (user.getRole().equals("1") ? "管理员" : "普通用户") %>
                 </td>
                 <td>
-                    <div class="col-auto d-flex" style="width: 100px">
+                    <div class="col-auto d-flex" style="width: 100px; height: 34px;">
                         <%
-                            if (request.getSession().getAttribute("role").equals("1")) {
+                            if (request.getSession().getAttribute("role").equals("1")
+                                    || request.getSession().getAttribute("id").equals(user.getId())) {
                         %>
                         <div class="col-auto" style="margin-left: 30px">
-                            <a href="update.jsp?id=<%=user.getId()%>&username=<%=user.getName()%>&role=<%=user.getRole()%>&gender=<%=user.getGender()%>"
-                               class="btn btn-primary mb-3">Update</a>
+                            <a href="update.jsp?id=<%=user.getId()%>&username=<%=user.getName()%>&password=<%=user.getPassword()%>&age=<%=user.getAge()%>&favorite=<%=user.getFavorites()%>&phone=<%=user.getPhone()%>&role=<%=user.getRole()%>&gender=<%=user.getGender()%>"
+                               class="btn btn-primary mybtn">Update</a>
                         </div>
                         <%
                             }
@@ -101,7 +111,7 @@
                         %>
 
                         <div class="col-auto" style="margin-left: 20px">
-                            <a href="delete.jsp?id=<%=user.getId()%>" class="btn mb-3 btn-danger">Delete</a>
+                            <a href="delete.jsp?id=<%=user.getId()%>" class="btn btn-danger mybtn">Delete</a>
                         </div>
 
                         <%
